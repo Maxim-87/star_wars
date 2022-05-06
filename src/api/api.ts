@@ -4,8 +4,8 @@ export const Api = {
     async getPlanetsApi() {
         return instance.get('/planets')
     },
-    async getResidentsApi() {
-        return instance.get('/people')
+    async getResidentApi(id:string) {
+        return instance.get(`/people/${id}/`)
     }
 }
 

@@ -6,7 +6,6 @@ import {useNavigate} from "react-router-dom";
 import {getPlanets} from "../../reducers/planetsReducer";
 import s from './Planets.module.scss'
 import {Planet} from "../Planet/Planet";
-import {getResidents} from "../../reducers/residentsReducer";
 import { Link } from 'react-router-dom';
 
 // type PlanetsType = {
@@ -20,6 +19,7 @@ const history = useNavigate()
     const dispatch = useDispatch()
     const [active, setActive] = useState(false)
 
+    // @ts-ignore
     const planets = useSelector<RootStateType, planetsData>(state => state.planets.planets)
 
     useEffect(() => {
@@ -29,14 +29,9 @@ const history = useNavigate()
     }, [])
 
     const changeActive = () => {
-        dispatch(getResidents())
+        // dispatch(getResidents())
         setActive(true)
     }
-
-    // const test = (id: string) => {
-    //     dispatch(setResidentsAc(id))
-    //     history('residents')
-    // }
 
     return (
         <div className={s.planetsBlock}>

@@ -3,11 +3,11 @@ import { legacy_createStore as createStore} from 'redux'
 import thunkMiddleware, { ThunkAction } from 'redux-thunk';
 import {composeWithDevTools} from "redux-devtools-extension";
 import {PlanetsActionsType, planetsReducer} from "./planetsReducer";
-import {residentsReducer} from "./residentsReducer";
+// import {residentsReducer} from "./residentsReducer";
 
 const rootReducer = combineReducers({
     planets: planetsReducer,
-    residents: residentsReducer,
+    // residents: residentsReducer,
 });
 
 export type RootStateType = ReturnType<typeof rootReducer>;

@@ -18,18 +18,18 @@ const defaultState: InitialStateType = {
 
 
 export const planetsReducer = (state: InitialStateType = defaultState, action: PlanetsActionsType) => {
-    switch (action.type) {
+     switch (action.type) {
         case 'SET_PLANETS':
             return {
                 ...state,
                 planets: action.payload
             }
-        // case 'SET_RESEDENT': {
-        //     return{
-        //         ...state,
-        //         residents: [...state,action.resident]
-        //     }
-        // }
+        case 'SET_RESIDENT': {
+            return {
+                ...state,
+                residents: [...state.residents, action.payload]
+            }
+        }
         default:
             return state
     }
@@ -40,26 +40,40 @@ export const setPlanetsAC = (planets: planetsData) => ({
     payload: planets
 })
 
-export const setResidentsAc = (id: planetsData) => ({
-    type: 'SET_PLANETS',
-    id
+export const setResidentAC = (resident: residentType) => ({
+    type: 'SET_RESIDENT',
+    payload: resident
 })
 
-// setResidentsAc
-// @ts-ignore
-export const getPlanets = (): ThunkType => async dispatch => {
 
+// @ts-ignore
+export const getResident = (id: string): ThunkType => async dispatch => {
+    try {
+        const res = await Api.getResidentApi(id)
+        dispatch(setResidentAC(res.data))
+        console.log(res.data)
+    }
+    catch (e) {
+        console.log('error getResident')
+    }
+}
+
+export const getPlanets = (): ThunkType => async dispatch => {
     try {
         const res = await Api.getPlanetsApi()
         dispatch(setPlanetsAC(res.data))
         console.log(res.data)
     } catch (e) {
-        console.log('Error')
+        console.log('error getPlanets')
     }
 }
 
 export enum PLANETS_ACTIONS {
     SET_PLANETS = 'SET_PLANETS',
+    SET_RESIDENT = 'SET_RESIDENT',
 }
 
-export type PlanetsActionsType = ReturnType<typeof setPlanetsAC>;
+export type PlanetsActionType = ReturnType<typeof setPlanetsAC>;
+export type ResidentActionType = ReturnType<typeof setResidentAC>;
+
+export type PlanetsActionsType = PlanetsActionType | ResidentActionType
