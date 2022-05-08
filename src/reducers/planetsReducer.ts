@@ -1,9 +1,11 @@
 import {Api, planetsData, residentType} from "../api/api";
 import {ThunkType} from "./store";
+import {Dispatch} from "redux";
 
 type InitialStateType = {
     planets: planetsData
     residents: Array<residentType>
+    isLoading: boolean
 }
 
 const defaultState: InitialStateType = {
@@ -13,11 +15,12 @@ const defaultState: InitialStateType = {
         previous: null,
         results: []
     },
-    residents: []
+    residents: [],
+    isLoading: false
 }
 
 
-export const planetsReducer = (state: InitialStateType = defaultState, action: PlanetsActionsType) => {
+export const planetsReducer = (state: InitialStateType = defaultState, action: PlanetsActionsType): InitialStateType => {
      switch (action.type) {
         case 'SET_PLANETS':
             return {
@@ -27,10 +30,16 @@ export const planetsReducer = (state: InitialStateType = defaultState, action: P
         case 'SET_RESIDENT': {
             return {
                 ...state,
-                residents: [...state.residents, action.payload]
+                residents:  action.payload
             }
         }
-        default:
+         case "IS_LOADING": {
+             return {
+                 ...state,
+                 isLoading: action.payload
+             }
+         }
+         default:
             return state
     }
 }
@@ -38,33 +47,51 @@ export const planetsReducer = (state: InitialStateType = defaultState, action: P
 export const setPlanetsAC = (planets: planetsData) => ({
     type: 'SET_PLANETS',
     payload: planets
-})
+} as const)
 
-export const setResidentAC = (resident: residentType) => ({
+export const setResidentsAC = (residents: Array<residentType>) => ({
     type: 'SET_RESIDENT',
-    payload: resident
-})
+    payload: residents
+} as const)
+
+export const isLoadingAC = (isLoading: boolean) => ({
+    type: 'IS_LOADING',
+    payload: isLoading
+} as const)
 
 
-// @ts-ignore
-export const getResident = (id: string): ThunkType => async dispatch => {
+export const getResident = (id: Array<string>) => async (dispatch: Dispatch) => {
     try {
-        const res = await Api.getResidentApi(id)
-        dispatch(setResidentAC(res.data))
-        console.log(res.data)
+        dispatch(isLoadingAC(true))
+        const results = []
+        for (let i = 0; i < id.length; i++) {
+
+            const res = await Api.getResidentApi(id[i])
+            results.push(res.data)
+        }
+        dispatch(setResidentsAC(results))
+        console.log(results)
     }
     catch (e) {
         console.log('error getResident')
+    }
+    finally {
+        dispatch(isLoadingAC(false))
     }
 }
 
 export const getPlanets = (): ThunkType => async dispatch => {
     try {
+        dispatch(isLoadingAC(true))
         const res = await Api.getPlanetsApi()
         dispatch(setPlanetsAC(res.data))
         console.log(res.data)
     } catch (e) {
         console.log('error getPlanets')
+    }
+    finally {
+        dispatch(isLoadingAC(false))
+
     }
 }
 
@@ -74,6 +101,7 @@ export enum PLANETS_ACTIONS {
 }
 
 export type PlanetsActionType = ReturnType<typeof setPlanetsAC>;
-export type ResidentActionType = ReturnType<typeof setResidentAC>;
+export type ResidentsActionType = ReturnType<typeof setResidentsAC>;
+export type isLoadingActionType = ReturnType<typeof isLoadingAC>;
 
-export type PlanetsActionsType = PlanetsActionType | ResidentActionType
+export type PlanetsActionsType = PlanetsActionType | ResidentsActionType | isLoadingActionType

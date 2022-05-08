@@ -2,43 +2,38 @@ import React, {useEffect, useState} from 'react';
 import {planetData, planetsData} from "../../api/api";
 import {useDispatch, useSelector} from "react-redux";
 import {RootStateType} from "../../reducers/store";
-import {useNavigate} from "react-router-dom";
 import {getPlanets} from "../../reducers/planetsReducer";
 import s from './Planets.module.scss'
 import {Planet} from "../Planet/Planet";
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
+import {Loader} from "../Loader/Loader";
 
-// type PlanetsType = {
-//     changePlanet: (id: string) => void
-//     planets: planetsData
-// }
 
 export const Planets = () => {
-const history = useNavigate()
 
     const dispatch = useDispatch()
-    const [active, setActive] = useState(false)
-
-    // @ts-ignore
     const planets = useSelector<RootStateType, planetsData>(state => state.planets.planets)
+    const isLoading = useSelector<RootStateType, boolean>(state => state.planets.isLoading)
+
+
+
 
     useEffect(() => {
         // @ts-ignore
         dispatch(getPlanets())
-
     }, [])
 
-    const changeActive = () => {
-        // dispatch(getResidents())
-        setActive(true)
+    if (isLoading) {
+        return <Loader/>
     }
 
     return (
         <div className={s.planetsBlock}>
             {planets.results.map((planet: planetData) => {
                 return <><Link
-                    to={`/planet?id=${planet.name}`} onClick={changeActive}><h1>{planet.name}</h1></Link>
-                <Planet id={planet.name} key={planet.name} active={active}/> </>
+                    to={`/planet?id=${planet.name}`}>
+                    <h1 className={s.title}>{planet.name}</h1></Link>
+                    <Planet key={planet.name}/> </>
             })}
         </div>
     );

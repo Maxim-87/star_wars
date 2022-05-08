@@ -1,0 +1,35 @@
+.buttonsList {
+  display: grid;
+  grid-auto-columns: minmax(min-content, max-content);
+  grid-auto-flow: column;
+  column-gap: 10px;
+  list-style: none;
+}
+
+.buttonItem {
+
+}
+
+.button {
+  background-color: lightgreen;
+  padding: 5px 10px;
+  font-size: 18px;
+  font-weight: 600;
+  color: darkblue;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 300ms ease, color 300ms ease;
+  &:hover {
+    background-color: darkblue;
+    color: lightgreen;
+  }
+
+}
+
+.active {
+  background-color: royalblue;
+  color: lightgreen;
+
+}
+
