@@ -1,8 +1,8 @@
-import React, {useLayoutEffect, useState,} from 'react';
+import React, {useLayoutEffect} from 'react';
 import {planetData, residentType} from "../../api/api";
 import s from '../Planets/Planets.module.scss';
-import {useSelector, useDispatch} from "react-redux";
-import {RootStateType} from "../../reducers/store";
+import {useDispatch} from "react-redux";
+
 import {getResident} from "../../reducers/planetsReducer";
 
 type ResidentsType = {
