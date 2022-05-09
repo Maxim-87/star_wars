@@ -7,7 +7,6 @@ import ss from './PlanetPage.module.scss';
 import s from '../Planets/Planets.module.scss'
 import {Residents} from '../Residents/Residents';
 import {getPlanets} from "../../reducers/planetsReducer";
-import {Loader} from "../Loader/Loader";
 
 type PlanetType = {
     id?: string
@@ -31,7 +30,6 @@ export const PlanetPage = ({id}: PlanetType) => {
 
     useEffect(() => {
         if (!planets.results.length) {
-            console.log('planets')
             // @ts-ignore
             dispatch(getPlanets())
         }

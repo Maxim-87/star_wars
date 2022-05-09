@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {planetData, planetsData} from "../../api/api";
 import {useDispatch, useSelector} from "react-redux";
 import {RootStateType} from "../../reducers/store";
@@ -19,7 +19,6 @@ export const Planets = () => {
 
 
     useEffect(() => {
-        // @ts-ignore
         dispatch(getPlanets())
     }, [])
 

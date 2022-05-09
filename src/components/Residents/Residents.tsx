@@ -2,7 +2,6 @@ import React, {useLayoutEffect} from 'react';
 import {planetData, residentType} from "../../api/api";
 import s from '../Planets/Planets.module.scss';
 import {useDispatch} from "react-redux";
-
 import {getResident} from "../../reducers/planetsReducer";
 
 type ResidentsType = {
@@ -19,7 +18,6 @@ export const Residents = ({planet, residents}: ResidentsType) => {
     useLayoutEffect(() => {
         if (planet) {
             const residentsId = planet.residents.map((res: any) => res.slice(29, res.length - 1))
-            // @ts-ignore
             dispatch(getResident(residentsId))
         }
 
