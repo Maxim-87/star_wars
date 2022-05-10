@@ -1,9 +1,9 @@
 import React from 'react';
 import {Routes, Route} from 'react-router-dom';
 import {Planets} from "../Planets/Planets";
-
 import {ROUTES} from '../../router/routes';
-import {PlanetPage} from "../Planet/PlanetPage";
+import {PlanetPage} from "../PlanetPage/PlanetPage";
+
 
 
 export const Main = () => {

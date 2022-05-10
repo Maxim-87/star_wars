@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {RootStateType} from "../../reducers/store";
 import {getPlanets} from "../../reducers/planetsReducer";
 import s from './Planets.module.scss'
-import {Planet} from "../Planet/Planet";
+import {Planet} from "../PlanetPage/Planet/Planet";
 import {Link} from 'react-router-dom';
 import {Loader} from "../Loader/Loader";
 

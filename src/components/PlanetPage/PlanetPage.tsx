@@ -63,18 +63,18 @@ export const PlanetPage = ({id}: PlanetType) => {
     return (
         <div className={s.planetsBlock}>
             <><h1>{planetSelected.name}</h1></>
-            <ul>
+            <ul >
                 <li> rotation_period: <b>{planetSelected.rotation_period}</b>
                 </li>
                 <li> orbital_period: <b>{planetSelected.orbital_period}</b>
                 </li>
                 <li> diameter: <b>{planetSelected.diameter}</b></li>
-                <li> climate:<b>{planetSelected.climate}</b></li>
-                <li> gravity:<b>{planetSelected.gravity}</b></li>
-                <li> terrain:<b>{planetSelected.terrain}</b></li>
-                <li> surface_water:<b>{planetSelected.surface_water}</b>
+                <li> climate: <b>{planetSelected.climate}</b></li>
+                <li> gravity: <b>{planetSelected.gravity}</b></li>
+                <li> terrain: <b>{planetSelected.terrain}</b></li>
+                <li> surface_water: <b>{planetSelected.surface_water}</b>
                 </li>
-                <li> population:<b>{planetSelected.population}</b></li>
+                <li> population: <b>{planetSelected.population}</b></li>
             </ul>
             <div><h2>Residents:</h2></div>
             <ul className={ss.buttonsList}>

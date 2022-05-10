@@ -30,14 +30,14 @@ export const Residents = ({planet, residents}: ResidentsType) => {
                 {residents.map((res: residentType) => <React.Fragment key={res.name}>
                     <h3>{res.name}</h3>
                     <ul>
-                        <li>height:<b>{res.height}</b></li>
-                        <li>mass:<b>{res.mass}</b></li>
-                        <li>hair_color:<b>{res.hair_color}</b></li>
-                        <li>eye_color:<b>{res.eye_color}</b></li>
-                        <li>birth_year:<b>{res.birth_year}</b></li>
-                        <li>gender:<b>{res.gender}</b></li>
-                        <li>created:<b>{res.created}</b></li>
-                        <li>edited:<b>{res.edited}</b></li>
+                        <li>height: <b>{res.height}</b></li>
+                        <li>mass: <b>{res.mass}</b></li>
+                        <li>hair_color: <b>{res.hair_color}</b></li>
+                        <li>eye_color: <b>{res.eye_color}</b></li>
+                        <li>birth_year: <b>{res.birth_year}</b></li>
+                        <li>gender: <b>{res.gender}</b></li>
+                        <li>created: <b>{res.created}</b></li>
+                        <li>edited: <b>{res.edited}</b></li>
                     </ul>
                 </React.Fragment>)}
             </div>
