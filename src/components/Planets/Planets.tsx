@@ -15,9 +15,6 @@ export const Planets = () => {
     const planets = useSelector<RootStateType, planetsData>(state => state.planets.planets)
     const isLoading = useSelector<RootStateType, boolean>(state => state.planets.isLoading)
 
-
-
-
     useEffect(() => {
         dispatch(getPlanets())
     }, [])

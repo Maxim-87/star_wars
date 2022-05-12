@@ -30,7 +30,6 @@ export const PlanetPage = ({id}: PlanetType) => {
 
     useEffect(() => {
         if (!planets.results.length) {
-            // @ts-ignore
             dispatch(getPlanets())
         }
     }, [planets])
