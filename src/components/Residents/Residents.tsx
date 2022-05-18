@@ -9,8 +9,6 @@ type ResidentsType = {
     residents: Array<residentType>
 }
 
-
-
 export const Residents = ({planet, residents}: ResidentsType) => {
 
     const dispatch = useDispatch()
@@ -22,7 +20,6 @@ export const Residents = ({planet, residents}: ResidentsType) => {
         }
 
     }, [])
-
 
     return (
         <>

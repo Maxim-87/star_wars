@@ -11,7 +11,6 @@ export const Planet = () => {
         return <Loader/>
     }
 
-
     return (
         <div>
             <ul>
